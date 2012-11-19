@@ -1,4 +1,4 @@
-﻿html, body { height: 100%; }
+﻿html, body { height: 100%; font-size: 14px; }
 body { font-family: sans-serif; line-height: 1.6em; margin: 0; padding: 0; }
 .application { width: 800px; margin: 10px auto; }
 
@@ -10,3 +10,5 @@ body { font-family: sans-serif; line-height: 1.6em; margin: 0; padding: 0; }
     .modal-close:hover { background: #e1e1e1; color: #000; }
 .modal-title { font-weight: bold; font-size: 12px; padding: 0 5px; }
 .modal-content { padding: 10px; }
+
+pre { line-height: 1.4em; font-size: 12px; padding: 10px; background: #f3f3f3; color: #666; }

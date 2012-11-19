@@ -5,9 +5,11 @@
     'use strict';
 
     var count = 0,
+
         isHtmlElement = function (obj) {
             return obj.nodeType && obj.nodeType === 1;
         },
+
         getOptions = function (element) {
             /*jslint evil: true*/
             var value = element.getAttribute('data-modal'),
@@ -23,13 +25,21 @@
 
             return data;
         },
-        getDefaultTemplate = function () {
+
+        getTemplate = function (options) {
+            var tpl;
+            if (options.template) {
+                tpl = $(options.template);
+                if (tpl.length) {
+                    return tpl.html();
+                }
+            }
             return $('#modal-template').html();
         };
 
     function Modal(args) {
         var options = isHtmlElement(args) ? getOptions(args) : args;
-        this.template = options.template || getDefaultTemplate();
+        this.template = getTemplate(options);
         this.url = options.url;
         this.context = $(this.template);
         this.container = $('[data-modal-control="container"]', this.context);
