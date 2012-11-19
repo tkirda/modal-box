@@ -1,0 +1,10 @@
+# Build and Object Folders
+bin/
+obj/
+Obj/
+
+#User Specific Files
+*.user
+*.suo
+*.userprefs
+*.pidb
