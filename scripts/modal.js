@@ -90,9 +90,14 @@
 
         loadContent: function () {
             console.log('Loading content...' + this.url);
-            var that = this;
+            var that = this,
+                content;
             if (that.url && that.url[0] === '#') {
-                that.setContent($(that.url).html());
+                content = $(that.url).html();
+                // Return before seting content, otherwise loaded event will not fire
+                setTimeout(function () {
+                    that.setContent(content);
+                }, 0);
                 return;
             }
 
@@ -125,6 +130,7 @@
         },
 
         fire: function (eventName) {
+            console.log('Fire: ' + eventName);
             var fn = this.eventHandlers[eventName] || function () { };
             return fn();
         },

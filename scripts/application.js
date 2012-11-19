@@ -1,17 +1,18 @@
 /*jslint evil: true*/
-/*global jQuery, window, modal, console, Modal */
+/*global jQuery, window, modal, console, Modal, confirm, alert */
 
 jQuery(function ($) {
     'use strict';
-    console.log('Init modal');
 
     $(document).on('click', '[data-modal]', function (e) {
-        console.log('Open modal');
         e.preventDefault();
-        var options = new Function('return ' + $(this).data('modal'))();
-        console.log(options);
-        //modal.open(options, this);
+        var modal = new Modal(this);
 
-        new Modal(this);
+        modal.on('beforeclose', function () {
+            // If returned value is false, it will stay open:
+            return confirm('Should I close this?');
+        }).on('loaded', function () {
+            alert('Modal window content just loaded');
+        });
     });
 });
