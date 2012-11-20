@@ -26,6 +26,12 @@
             return data;
         },
 
+        getDefaultOptions = function () {
+            return {
+                closeOnBlur: true
+            };
+        },
+
         getTemplate = function (options) {
             var tpl;
             if (options.template) {
@@ -39,6 +45,7 @@
 
     function Modal(args) {
         var options = isHtmlElement(args) ? getOptions(args) : args;
+        this.options = getDefaultOptions();
         this.template = getTemplate(options);
         this.url = options.url;
         this.context = $(this.template);
@@ -69,7 +76,7 @@
 
             this.context.on('click', function (e) {
                 // Only close if was clicked on
-                if (e.target === this) {
+                if (that.options.closeOnBlur && e.target === this) {
                     that.close();
                 }
             });
