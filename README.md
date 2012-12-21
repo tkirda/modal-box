@@ -5,7 +5,7 @@ Modal window (aka lightbox) manager. Supports multipple styles in a single app. 
 ## API
 
 * `$.openModal(options)`: Opens modal popup based on provided options.
-* `$(selector).openModal(options)`: Read options from HTML element and merges them wiht provided option before opening modal popup.
+* `$(selector).openModal(options)`: Reads options from HTML element and merges them with provided options before opening modal popup.
     * Opens modal popup.
     * `options`: An object literal which defines the settings for modal popup.
         * `title`: popup title.
@@ -37,7 +37,6 @@ Html setup:
 Open modal by reading options from the link:
 
     // These two expressions bellow are identical:
-
     $('.demo').openModal();
     
     $.openModal({
@@ -70,6 +69,14 @@ You may define your own template and pass it as a parameter:
           </div>
         </div>
     </script>
+
+You can use any classes. Modal popup controls are defined by `data-modal-control` attribute as you see in samples above. Valid attribute values are:
+
+* `container`: popup container element (required).
+* `title`: popup title element (optional).
+* `close`: popup close button (optional). Also, if popup content has elements that are 
+   marked with this attribute value, clicking on those elements will trigger close event.
+* `content`: popup content container (required).
 
 Then specify template ID when initializing popup:
 
