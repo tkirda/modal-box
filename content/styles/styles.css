@@ -7,8 +7,9 @@ body { font-family: sans-serif; line-height: 1.6em; margin: 0; padding: 0; }
 .xmodal-overlay { width: 100%; height: 100%; background-color: red; position: fixed; top: 0; right: 0; }
 .modal-container { width: 600px; min-height: 60px; border: 1px solid #007acb; margin: 20px auto; background: #FFF; box-shadow: 1px 1px 7px 1px #666; position: relative; }
 .modal-close { color: #999; position: absolute; width: 30px; height: 26px; top: 0; right: 0; text-align: center; cursor: pointer; }
+    .modal-close:after { content: "X"; }
     .modal-close:hover { background: #e1e1e1; color: #000; }
 .modal-title { font-weight: bold; font-size: 12px; padding: 0 5px; }
-.modal-content { padding: 10px; }
+.modal-content { padding: 10px; overflow: auto; margin: 40px 0 0 0; }
 
 pre { line-height: 1.4em; font-size: 12px; padding: 10px; background: #f3f3f3; color: #666; }
