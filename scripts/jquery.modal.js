@@ -14,33 +14,33 @@
                 htmlClass: 'modal-on',
                 className: null,
                 closeOnBlur: true,
-                closeOnEscape: true
+                closeOnEscape: true,
+                templateId: null
             };
         },
 
+        getDefaultTemplate = function () {
+            return '<div class="modal-context">' +
+                   '  <div class="modal-container" data-modal-control="container">' +
+                   '    <div class="modal-title" data-modal-control="title"></div>' +
+                   '    <div class="modal-close" data-modal-control="close"></div>' +
+                   '    <div class="modal-content" data-modal-control="content"></div>' +
+                   '  </div>' +
+                   '</div>';
+        },
+
         getTemplate = function (options) {
-            var tpl = null,
+            var template = null,
                 tplContainer;
 
-            if (options.template) {
-                tplContainer = $(options.template);
+            if (options.templateId) {
+                tplContainer = $('#' + options.templateId);
                 if (tplContainer.length) {
-                    tpl = tplContainer.html();
+                    template = tplContainer.html();
                 }
             }
 
-            if (!tpl) {
-                tpl =
-                    '<div class="modal">' +
-                    '  <div class="modal-container" data-modal-control="container">' +
-                    '    <div class="modal-title" data-modal-control="title"></div>' +
-                    '    <div class="modal-close" data-modal-control="close"></div>' +
-                    '    <div class="modal-content" data-modal-control="content"></div>' +
-                    '  </div>' +
-                    '</div>';
-            }
-
-            return tpl;
+            return template || getDefaultTemplate();
         };
 
     function Modal(options) {
