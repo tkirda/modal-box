@@ -10,7 +10,7 @@
 
         getDefaultOptions = function () {
             return {
-                loader: 'Loading...',
+                loader: '<div class="modal-loader">Loading...</div>',
                 htmlClass: 'modal-on',
                 className: null,
                 closeOnBlur: true,
@@ -56,6 +56,30 @@
         that.init();
     }
 
+    Modal.openCount = function () {
+        return openCount;
+    };
+
+    Modal.openModals = function () {
+        return openModals;
+    };
+
+    Modal.parseOptions = function (element) {
+        /*jslint evil: true*/
+        var el = $(element),
+            value = el.attr('data-modal'),
+            options = (new Function('return ' + value)()) || {},
+            url = el.attr('href');
+
+        // Verify if URL is local link:
+        options.url = url;
+
+        // Get title:
+        options.title = options.title || el.attr('title') || el.text();
+
+        return options;
+    };
+
     Modal.prototype = {
 
         init: function () {
@@ -71,7 +95,7 @@
             }
 
             if (options.className) {
-                that.context.attr(options.className);
+                that.context.addClass(options.className);
             }
 
             that.context.on('click', '[data-modal-control="close"]', function () {
@@ -94,7 +118,7 @@
         open: function () {
             var that = this;
 
-            that.context.appendTo('body').focus();
+            that.context.appendTo('body');
             that.loadContent();
             openCount += 1;
             openModals.push(this);
@@ -186,21 +210,7 @@
         }
     };
 
-    Modal.parseOptions = function (element) {
-        /*jslint evil: true*/
-        var el = $(element),
-            value = el.attr('data-modal'),
-            options = (new Function('return ' + value)()),
-            url = el.attr('href');
-
-        // Verify if URL is local link:
-        options.url = url;
-
-        // Get title:
-        options.title = options.title || el.attr('title') || el.text();
-
-        return options;
-    };
+    $.Modal = Modal;
 
     $.fn.openModal = function (options) {
         return this.each(function () {

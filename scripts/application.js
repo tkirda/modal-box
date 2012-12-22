@@ -18,8 +18,6 @@ jQuery(function ($) {
             });
         };
 
-
-
     $(document).on('click', '[data-modal]', function (e) {
         e.preventDefault();
         counter += 1;
