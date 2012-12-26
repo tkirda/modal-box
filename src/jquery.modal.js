@@ -1,9 +1,20 @@
-/*global jQuery*/
+/*global jQuery, define*/
 
-(function ($) {
+// Uses AMD or browser globals to create a jQuery plugin.
+(function (factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['jquery'], factory);
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}(function ($) {
     'use strict';
 
-    var openCount = 0,
+    var version = '0.1',
+        openCount = 0,
         openModals = [],
         noop = function () { },
         console = window.console || { log: noop },
@@ -56,6 +67,8 @@
         that.init();
     }
 
+    Modal.version = version;
+
     Modal.openCount = function () {
         return openCount;
     };
@@ -81,6 +94,8 @@
     };
 
     Modal.prototype = {
+
+        version: version,
 
         init: function () {
             var that = this,
@@ -239,5 +254,4 @@
             modal.close();
         }
     });
-
-}(jQuery));
+}));
