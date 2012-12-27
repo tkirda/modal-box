@@ -197,4 +197,19 @@ describe('Modal Box', function () {
         modal.option('openEffect', 'none');
         expect(modal.option('openEffect')).toEqual('none');
     });
+
+    it('Should focus input field', function () {
+        $.openModal({
+            title: 'Title',
+            content: '<div><input id="FocusField" type="text" /></div>'
+        });
+
+        // Wait for UI to get focus:
+        waits(10);
+
+        runs(function () {
+            var hasFocus = $('#FocusField').is(':focus');
+            expect(hasFocus).toBe(true);
+        });
+    });
 });

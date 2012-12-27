@@ -25,6 +25,7 @@ Modal window (aka lightbox) manager. Supports multipple styles in a single app. 
 		* `openDuration`: jQuery openEffect duration. A string or number determining how long the animation will run. Default value: `100`.
 		* `closeEffect`: jQuery effect method used to close modal. Default value: `fadeOut`.
 		* `closeDuration`: jQuery closeEffect duration. A string or number determining how long the animation will run. Default value: `100`.
+		* `autofocus`: indicates whether to focus first input field if any. Default value: `true`.
 
 
 ## Usage

@@ -30,7 +30,8 @@
                 openEffect: 'fadeIn',
                 openDuration: 100,
                 closeEffect: 'fadeOut',
-                closeDuration: 100
+                closeDuration: 100,
+                autofocus: true
             };
         },
 
@@ -223,13 +224,22 @@
         },
 
         content: function (value) {
+            var that = this,
+                options = that.options,
+                contentContainer = that.contentContainer;
+
             if (arguments.length === 0) {
-                return this.options.content;
+                return options.content;
             }
 
-            this.options.content = value;
-            this.contentContainer.html(value);
-            this.fire('load');
+            options.content = value;
+            contentContainer.html(value);
+
+            if (options.autofocus) {
+                contentContainer.find('input:text:first').focus();
+            }
+
+            that.fire('load');
         },
 
         showLoader: function () {
