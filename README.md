@@ -21,6 +21,10 @@ Modal window (aka lightbox) manager. Supports multipple styles in a single app. 
         * `loader`: content to be displayed while content is being loaded. Default value: `<div class="modal-loader">Loading...</div>`.
         * `htmlClass`: class name to be added to HTML element when first modal opens. Class removed when last popup closes. Default value: `modal-on`.
         * `templateId`: custom template container ID.
+		* `openEffect`: jQuery effect method used to open modal. Default value: `fadeIn`.
+		* `openDuration`: jQuery openEffect duration. A string or number determining how long the animation will run. Default value: `100`.
+		* `closeEffect`: jQuery effect method used to close modal. Default value: `fadeOut`.
+		* `closeDuration`: jQuery closeEffect duration. A string or number determining how long the animation will run. Default value: `100`.
 
 
 ## Usage

@@ -26,7 +26,11 @@
                 className: null,
                 closeOnBlur: true,
                 closeOnEscape: true,
-                templateId: null
+                templateId: null,
+                openEffect: 'fadeIn',
+                openDuration: 100,
+                closeEffect: 'fadeOut',
+                closeDuration: 100
             };
         },
 
@@ -130,10 +134,25 @@
             that.title(that.options.title);
         },
 
+        option: function (option, value) {
+            var options = this.options;
+            if (arguments.length === 1) {
+                return options[option];
+            }
+            options[option] = value;
+            return this;
+        },
+
         open: function () {
-            var that = this;
+            var that = this,
+                options = that.options,
+                fx = options.openEffect,
+                durration = options.openDuration;
 
             that.context.appendTo('body');
+            if (fx && durration && that.context[fx]) {
+                that.context.hide()[fx](durration);
+            }
             that.loadContent();
             openCount += 1;
             openModals.push(this);
@@ -144,13 +163,24 @@
         },
 
         close: function (force) {
-            var that = this;
+            var that = this,
+                options = that.options,
+                fx = options.closeEffect,
+                durration = options.closeDuration,
+                finalize = function () {
+                    that.context.remove();
+                    openCount -= 1;
+                    openModals.pop();
+                    if (openCount === 0) {
+                        that.onLastClose();
+                    }
+                };
+
             if (force || that.fire('close') !== false) {
-                that.context.remove();
-                openCount -= 1;
-                openModals.pop();
-                if (openCount === 0) {
-                    that.onLastClose();
+                if (fx && durration && that.context[fx]) {
+                    that.context[fx](durration).promise().done(finalize);
+                } else {
+                    finalize();
                 }
             }
         },
@@ -241,6 +271,7 @@
     $.openModal = function (options) {
         var modal = new Modal(options);
         modal.open();
+        return modal;
     };
 
     // Close last open window when escape is pressed:

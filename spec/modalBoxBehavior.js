@@ -4,14 +4,9 @@
 describe('Modal Box', function () {
     'use strict';
 
-    function getLastOpenModal() {
-        var modals = $.Modal.openModals();
-        return modals[modals.length - 1];
-    }
-
     afterEach(function () {
         $.each($.Modal.openModals(), function (i, modal) {
-            modal.close(true);
+            modal.option('closeDuration', 0).close(true);
         });
     });
 
@@ -144,14 +139,12 @@ describe('Modal Box', function () {
             responseText: 'AjaxContent'
         });
 
-        $.openModal({
+        modal = $.openModal({
             url: '/test',
             title: 'Title',
             loader: 'LoadingText',
             onLoad: function () { loaded = true; }
         });
-
-        modal = getLastOpenModal();
 
         waits(20);
 
@@ -172,21 +165,36 @@ describe('Modal Box', function () {
         expect(openCount).toBe(0);
         expect($('html').hasClass(htmlClass)).toBe(false);
 
-        $.openModal({
+        modal = $.openModal({
             title: 'Title',
             content: 'Content',
-            htmlClass: htmlClass
+            htmlClass: htmlClass,
+            openDuration: 0,
+            closeDuration: 0
         });
 
         openCount = $.Modal.openCount();
         expect(openCount).toBe(1);
         expect($('html').hasClass(htmlClass)).toBe(true);
 
-        modal = getLastOpenModal();
         modal.close(true);
 
         openCount = $.Modal.openCount();
         expect(openCount).toBe(0);
         expect($('html').hasClass(htmlClass)).toBe(false);
+    });
+
+    it('Should read read/write option value', function () {
+        var modal;
+
+        modal = $.openModal({
+            title: 'Title',
+            content: 'Content'
+        });
+
+        expect(modal.option('openEffect')).toEqual('fadeIn');
+
+        modal.option('openEffect', 'none');
+        expect(modal.option('openEffect')).toEqual('none');
     });
 });
