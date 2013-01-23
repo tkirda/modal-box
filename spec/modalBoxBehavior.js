@@ -38,7 +38,7 @@ describe('Modal Box', function () {
         $.openModal({
             title: 'Title',
             content: 'Content',
-            onLoad: function (instance) { modal = instance; }
+            onLoad: function () { modal = this; }
         });
 
         waitsFor(function () {
@@ -58,7 +58,7 @@ describe('Modal Box', function () {
             title: 'Title',
             content: 'Content',
             width: 100,
-            onLoad: function (instance) { modal = instance; }
+            onLoad: function () { modal = this; }
         });
 
         waitsFor(function () {
@@ -77,7 +77,7 @@ describe('Modal Box', function () {
             title: 'Title',
             content: 'Content',
             height: 100,
-            onLoad: function (instance) { modal = instance; }
+            onLoad: function () { modal = this; }
         });
 
         waitsFor(function () {
@@ -97,7 +97,7 @@ describe('Modal Box', function () {
             content: 'Content',
             className: 'test-class',
             height: 100,
-            onLoad: function (instance) { modal = instance; }
+            onLoad: function () { modal = this; }
         });
 
         waitsFor(function () {
@@ -116,8 +116,8 @@ describe('Modal Box', function () {
         $.openModal({
             title: 'Title',
             content: 'Content',
-            onLoad: function (instance) { modal = instance; },
-            onClose: function (instance) { closed = instance === modal; }
+            onLoad: function () { modal = this; },
+            onClose: function () { closed = this === modal; }
         });
 
         waitsFor(function () {
