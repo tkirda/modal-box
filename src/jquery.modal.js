@@ -253,7 +253,7 @@
 
         fire: function (eventName) {
             console.log('Fire: ' + eventName);
-            return (this.eventHandlers[eventName] || noop)(this);
+            return (this.eventHandlers[eventName] || noop).call(this);
         },
 
         onFirstOpen: function () {
