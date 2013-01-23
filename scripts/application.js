@@ -26,14 +26,17 @@ jQuery(function ($) {
             title: 'Window #' + counter,
             width: getRandomWidth(),
             height: getRandomWidth(),
-            onLoad: function (instance) {
+            onLoad: function () {
+                var instance = this;
                 console.log('Log: Content loaded for ' + instance.title());
             },
-            onClose: function (instance) {
+            onClose: function () {
+                var instance = this;
                 $.openModal({
                     title: 'Close widnow?',
                     content: '<button>Yes</button> <button>No</button>',
-                    onLoad: function (confirmation) {
+                    onLoad: function () {
+                        var confirmation = this;
                         $('button:first', confirmation.context).focus();
                         setupConfirmation(confirmation, instance);
                     }
