@@ -4,7 +4,7 @@ Modal window (aka lightbox) manager. Supports multipple styles in a single app. 
 
 ## API
 
-* `$.openModal(options)`: Opens modal popup based on provided options.
+* `$.openModal(options)`: Opens modal popup based on provided options and returns modal instance.
 * `$(selector).openModal(options)`: Reads options from HTML element and merges them with provided options before opening modal popup.
     * Opens modal popup.
     * `options`: An object literal which defines the settings for modal popup.
@@ -13,20 +13,21 @@ Modal window (aka lightbox) manager. Supports multipple styles in a single app. 
         * `url`: content URL. Content will be loaded via AJAX get method.
         * `width`: number - popup container width in pixels.
         * `height`: number - content container height.
-        * `onLoad`: `function (instance) {}` callback function fired after content has been loaded into content container.
-        * `onClose`: `function (instance) {}` callback function fired before closing the popup. Return `false` to prevent closing popup.
+        * `onLoad`: `function () {}` callback function fired after content has been loaded into content container.
+        * `onClose`: `function () {}` callback function fired before closing the popup. Return `false` to prevent closing popup.
         * `closeOnEscape`: boolean - indicates whether to close popup when escape is pressed. Default value: `true`.
         * `closeOnClick`: boolean - indicates whether to cloase popup when clicked on overlay. Default value: `true`.
         * `className`: modal container class name. Default value: empty string.
         * `loader`: content to be displayed while content is being loaded. Default value: `<div class="modal-loader">Loading...</div>`.
         * `htmlClass`: class name to be added to HTML element when first modal opens. Class removed when last popup closes. Default value: `modal-on`.
         * `templateId`: custom template container ID.
-		* `openEffect`: jQuery effect method used to open modal. Default value: `fadeIn`.
-		* `openDuration`: jQuery openEffect duration. A string or number determining how long the animation will run. Default value: `100`.
-		* `closeEffect`: jQuery effect method used to close modal. Default value: `fadeOut`.
-		* `closeDuration`: jQuery closeEffect duration. A string or number determining how long the animation will run. Default value: `100`.
-		* `autofocus`: indicates whether to focus first input field if any. Default value: `true`.
+        * `openEffect`: jQuery effect method used to open modal. Default value: `fadeIn`.
+        * `openDuration`: jQuery openEffect duration. A string or number determining how long the animation will run. Default value: `100`.
+        * `closeEffect`: jQuery effect method used to close modal. Default value: `fadeOut`.
+        * `closeDuration`: jQuery closeEffect duration. A string or number determining how long the animation will run. Default value: `100`.
+        * `autofocus`: indicates whether to focus first input field if any. Default value: `true`.
 
+In the callback `this` refers to modal instance.
 
 ## Usage
 
