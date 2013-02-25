@@ -11,10 +11,11 @@ describe('Modal Box', function () {
     });
 
     it('Should read url and title from link element', function () {
-        var element = $('<a href="/test-url.htm" title="Test">Title</a>')[0],
+        var url = window.location.protocol + '//' + window.location.host + '/test-url.htm',
+            element = $('<a href="' + url + '" title="Test">Title</a>')[0],
             options = $.Modal.parseOptions(element);
 
-        expect(options.url).toEqual('/test-url.htm');
+        expect(options.url).toEqual(url);
         expect(options.title).toEqual('Test');
     });
 

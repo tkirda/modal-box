@@ -480,8 +480,12 @@
 		//url:        null,
 		//type:       'GET',
 		log:          function( msg ) {
-			if ( window[ 'console' ] && window.console.log ) {
-				window.console.log.apply( console, arguments );
+		    if (window['console'] && window.console.log) {
+		        try {
+		            window.console.log.apply(console, arguments);
+		        } catch (e) {
+		            window.console.log(msg);
+		        }
 			}
 		},
 		status:       200,
