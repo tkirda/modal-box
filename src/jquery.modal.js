@@ -17,7 +17,8 @@
         openCount = 0,
         openModals = [],
         noop = function () { },
-        console = window.console || { log: noop },
+        fakeConsole = { log: noop },
+        console = window.console || fakeConsole,
 
         getDefaultOptions = function () {
             return {
@@ -31,7 +32,8 @@
                 openDuration: 100,
                 closeEffect: 'fadeOut',
                 closeDuration: 100,
-                autofocus: true
+                autofocus: true,
+                debug: false
             };
         },
 
@@ -68,6 +70,11 @@
         that.contentContainer = $('[data-modal-control="content"]', that.context);
         that.titleContainer = $('[data-modal-control="title"]', that.context);
         that.eventHandlers = [];
+
+        if (!options.debug){
+            that.console = fakeConsole;
+        }
+
         // Initialize modal popup:
         that.init();
     }
