@@ -86,11 +86,10 @@
         /*jslint evil: true*/
         var el = $(element),
             value = el.attr('data-modal'),
-            options = (new Function('return ' + value)()) || {},
-            url = el.attr('href');
+            options = (new Function('return ' + value)()) || {};
 
         // Verify if URL is local link:
-        options.url = url;
+        options.url = options.url || el.attr('href');
 
         // Get title:
         options.title = options.title || el.attr('title') || el.text();
