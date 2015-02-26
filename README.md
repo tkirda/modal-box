@@ -16,7 +16,7 @@ Modal window (aka lightbox) manager. Supports multipple styles in a single app. 
         * `onLoad`: `function () {}` callback function fired after content has been loaded into content container.
         * `onClose`: `function () {}` callback function fired before closing the popup. Return `false` to prevent closing popup.
         * `closeOnEscape`: boolean - indicates whether to close popup when escape is pressed. Default value: `true`.
-        * `closeOnClick`: boolean - indicates whether to cloase popup when clicked on overlay. Default value: `true`.
+        * `closeOnClick`: boolean - indicates whether to close popup when clicked on overlay. Default value: `true`.
         * `className`: modal container class name. Default value: empty string.
         * `loader`: content to be displayed while content is being loaded. Default value: `<div class="modal-loader">Loading...</div>`.
         * `htmlClass`: class name to be added to HTML element when first modal opens. Class removed when last popup closes. Default value: `modal-on`.
@@ -26,6 +26,7 @@ Modal window (aka lightbox) manager. Supports multipple styles in a single app. 
         * `closeEffect`: jQuery effect method used to close modal. Default value: `fadeOut`.
         * `closeDuration`: jQuery closeEffect duration. A string or number determining how long the animation will run. Default value: `100`.
         * `autofocus`: indicates whether to focus first input field if any. Default value: `true`.
+        * `keepPosition`: indicates if window's scroll bar should go back to the position when it was opened after last modal is closed. Default value: `true`.
 
 In the callback `this` refers to modal instance.
 
@@ -36,7 +37,7 @@ Html setup:
     <a href="/expense-report.html" 
        class="demo" 
        title="Expense Report" 
-       data-modal="{ width: 500, closeOnEscape: false }">
+       data-modal="{ closeOnEscape: false }">
         View Expense Report
     </a>
 
@@ -48,7 +49,6 @@ Open modal by reading options from the link:
     $.openModal({
         url: '/expense-report.html',
         title: 'Expense Report',
-        width: 500,
         closeOnEscape: false
     });
 
