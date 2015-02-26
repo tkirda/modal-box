@@ -22,7 +22,7 @@
 
         getDefaultOptions = function () {
             return {
-                loader: '<div class="modal-loader">Loading...</div>',
+                loader: '<div class="modal-loader" role="status">Loading...</div>',
                 htmlClass: 'modal-on',
                 className: null,
                 closeOnBlur: true,
@@ -33,18 +33,19 @@
                 closeEffect: 'fadeOut',
                 closeDuration: 100,
                 autofocus: true,
-                debug: false
+                debug: false,
+                keepPosition: true
             };
         },
 
         getDefaultTemplate = function () {
-            return '<div class="modal-context">' +
-                   '  <div class="modal-container" data-modal-control="container">' +
-                   '    <div class="modal-title" data-modal-control="title"></div>' +
-                   '    <div class="modal-close" data-modal-control="close"></div>' +
-                   '    <div class="modal-content" data-modal-control="content"></div>' +
-                   '  </div>' +
-                   '</div>';
+            return '<div class="modal-context" role="dialog">' + //alertdialog
+                '  <div class="modal-container" data-modal-control="container" role="region">' +
+                '    <div class="modal-title" data-modal-control="title" role="heading"></div>' +
+                '    <button class="modal-close" data-modal-control="close"></button>' +
+                '    <div class="modal-content" data-modal-control="content"></div>' +
+                '  </div>' +
+                '</div>';
         },
 
         getTemplate = function (options) {
@@ -70,6 +71,7 @@
         that.contentContainer = $('[data-modal-control="content"]', that.context);
         that.titleContainer = $('[data-modal-control="title"]', that.context);
         that.eventHandlers = [];
+        that.positionAtOpen = 0;
 
         if (!options.debug){
             that.console = fakeConsole;
@@ -263,11 +265,15 @@
         },
 
         onFirstOpen: function () {
+            this.positionAtOpen = $(window).scrollTop();
             $('html').addClass(this.options.htmlClass);
         },
 
         onLastClose: function () {
             $('html').removeClass(this.options.htmlClass);
+            if(this.options.keepPosition === true) {
+                $(window).scrollTop(this.positionAtOpen);
+            }
         }
     };
 

@@ -1,15 +1,24 @@
-﻿html, body { height: 100%; font-size: 14px; }
+﻿html, body { min-height: 100%; font-size: 14px; }
 body { font-family: sans-serif; line-height: 1.6em; margin: 0; padding: 0; }
 .application { width: 800px; margin: 10px auto; }
-
-.modal-context { width: 100%; height: 100%; overflow: auto; position: fixed; top: 0; left: 0; background-color: #361919; background-color: rgba(54, 25, 25, 0.2); }
-.modal-on body { overflow: hidden; }
-.xmodal-overlay { width: 100%; height: 100%; background-color: red; position: fixed; top: 0; right: 0; }
-.modal-container { width: 600px; min-height: 60px; border: 1px solid #007acb; margin: 20px auto; background: #FFF; box-shadow: 1px 1px 7px 1px #666; position: relative; }
-.modal-close { color: #999; position: absolute; width: 30px; height: 26px; top: 0; right: 0; text-align: center; cursor: pointer; }
-    .modal-close:after { content: "X"; }
-    .modal-close:hover { background: #e1e1e1; color: #000; }
-.modal-title { font-weight: bold; font-size: 12px; padding: 0 5px; }
-.modal-content { padding: 10px; overflow: auto; margin: 40px 0 0 0; }
-
 pre { line-height: 1.4em; font-size: 12px; padding: 10px; background: #f3f3f3; color: #666; }
+
+/* modal defaults */
+.modal-on body { overflow: hidden; }
+.modal-context { background-color: rgba(211, 211, 211, 0.8); height: 100%; left: 0; -webkit-overflow-scrolling: touch; overflow-y: scroll; position: fixed; top: 0; width: 100%; z-index: 500; }
+.modal-container { margin: 0 auto; max-width: 100%; padding: 20px 0; position: relative; width: 1160px; }
+.modal-title { -moz-box-sizing: border-box; box-sizing: border-box; background: #fff; font-weight: 700; padding: 20px; }
+.modal-content { -moz-box-sizing: border-box; box-sizing: border-box; background: #fff; padding: 20px; }
+.modal-close { background: none; border: 0; color: #333; cursor: pointer; height: 30px; position: absolute; right: 0; text-align: center; top: 20px; width: 30px; }
+.modal-close:after { content: '\00d7'; display: inline-block; font-family: 'helvetica', sans-serif; font-size: 30px; font-weight: 400; height: 30px; line-height: 30px; position: absolute; right: 0; top: 0; width: 30px; }
+.modal-close:hover { color: #000; }
+@media screen and (max-width: 1200px) {
+    .modal-container { margin: 0 20px; width: auto;  }
+}
+@media screen and (max-width: 1024px) {
+    .modal-on { overflow: hidden; }
+    .modal-on body { left: 0; position: fixed; top: 0; }
+}
+
+/* modal X */
+.xmodal-overlay { background-color: red; height: 100%; left: 0; -webkit-overflow-scrolling: touch; overflow-y: scroll; position: fixed; top: 0; width: 100%; z-index: 500; }

@@ -5,9 +5,6 @@ jQuery(function ($) {
     'use strict';
 
     var counter = 0,
-        getRandomWidth = function () {
-            return 300 + (Math.random() * 500) + 'px';
-        },
         setupConfirmation = function (confirmation, instance) {
             $('button', confirmation.context).on('click', function () {
                 var shouldClose = $(this).text() === 'Yes';
@@ -24,8 +21,7 @@ jQuery(function ($) {
 
         $(this).openModal({
             title: 'Window #' + counter,
-            width: getRandomWidth(),
-            height: getRandomWidth(),
+            htmlClass: 'modal-on',
             onLoad: function () {
                 var instance = this;
                 console.log('Log: Content loaded for ' + instance.title());
